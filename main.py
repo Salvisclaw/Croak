@@ -36,10 +36,6 @@ if 'artist' not in st.session_state:
     st.session_state.artist=5
 def update_same_art():
     st.session_state.artist=st.session_state.same_art
-if 'model2' not in st.session_state:
-    st.session_state.model2= 'Spotify model'
-def update_radio1():
-    st.session_state.model2 =st.session_state.radio1
 
 if 'Region' not in st.session_state:
     st.session_state.rg="US"
@@ -86,11 +82,7 @@ def play_recomm():
         st.session_state.rs=res
         st.session_state.err=err
     if len(st.session_state.rs)>=1:
-        if st.session_state.model == 'Model 1' or st.session_state.model == 'Model 2':
-            st.success('Go to the Result page to view the top {} recommendations'.format(len(st.session_state.rs)))
-
-        else:
-            st.success('Go to the Result page to view the  Spotify recommendations')
+        st.success('Go to the Result page to view the  Spotify recommendations')
     else:
         st.error('Model failed. Please try again')   
 
@@ -114,10 +106,7 @@ def song_recomm():
         st.session_state.rs=res
         st.session_state.err=err
     if len(st.session_state.rs)>=1:
-        if st.session_state.model == 'Model 1' or st.session_state.model == 'Model 2':
-            st.success('Go to the Result page to view the top {} recommendations'.format(len(st.session_state.rs)))
-        else:
-            st.success('Go to the Result page to view the  Spotify recommendations')
+        st.success('Go to the Result page to view the  Spotify recommendations')
     else:
         st.error('Model failed. Please try again.')
 
@@ -168,18 +157,12 @@ def home_page():
     st.session_state.Region=st.session_state.rg
 
     
-    st.title('Helical Recommendation System')
-    col,col2,col3=st.columns([2,2,3])
+    st.title('Croak Recommendation System')
+    col,col2=st.columns([2,3])
     radio=col.radio("Feature",options=("Playlist","Song","Artist Top Tracks"),key='radio',on_change=update_radio0)
     if radio =="Artist Top Tracks":
-        radio1=col2.radio("Model",options=["Spotify model"],key='radio1',on_change=update_radio1)
-        Region=col3.selectbox("Please Choose Region",index=58,key='Region',on_change=update_Region,options=('AD', 'AR', 'AU', 'AT', 'BE', 'BO', 'BR', 'BG', 'CA', 'CL', 'CO', 'CR', 'CY', 'CZ', 'DK', 'DO', 'EC', 'SV', 'EE', 'FI', 'FR', 'DE', 'GR', 'GT', 'HN', 'HK', 'HU', 'IS', 'ID', 'IE', 'IT', 'JP', 'LV', 'LI', 'LT', 'LU', 'MY', 'MT', 'MX', 'MC', 'NL', 'NZ', 'NI', 'NO', 'PA', 'PY', 'PE', 'PH', 'PL', 'PT', 'SG', 'ES', 'SK', 'SE', 'CH', 'TW', 'TR', 'GB', 'US', 'UY'))
-    elif radio =="Playlist" or radio =="Song" :
-        radio2=col2.radio("Model",options=("Model 1","Model 2","Spotify Model"),key='radio2',on_change=update_radio2)
-        if st.session_state.radio2=="Model 1" or st.session_state.radio2=="Model 2":
-            num_genre=col3.selectbox("choose a number of genres to focus on",options=(1,2,3,4,5,6,7),index=2,key='num_genre',on_change=update_num_genre)
-            same_art=col3.selectbox("How many recommendations by the same artist",options=(1,2,3,4,5,7,10,15),index=3,key='same_art',on_change=update_same_art)
-
+        Region=col2.selectbox("Please Choose Region",index=58,key='Region',on_change=update_Region,options=('AD', 'AR', 'AU', 'AT', 'BE', 'BO', 'BR', 'BG', 'CA', 'CL', 'CO', 'CR', 'CY', 'CZ', 'DK', 'DO', 'EC', 'SV', 'EE', 'FI', 'FR', 'DE', 'GR', 'GT', 'HN', 'HK', 'HU', 'IS', 'ID', 'IE', 'IT', 'JP', 'LV', 'LI', 'LT', 'LU', 'MY', 'MT', 'MX', 'MC', 'NL', 'NZ', 'NI', 'NO', 'PA', 'PY', 'PE', 'PH', 'PL', 'PT', 'SG', 'ES', 'SK', 'SE', 'CH', 'TW', 'TR', 'GB', 'US', 'UY'))
+           
 
     st.markdown("<br>", unsafe_allow_html=True)
     
