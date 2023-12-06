@@ -25,7 +25,7 @@ sp = spotipy.client.Spotify(auth_manager=auth_manager)
 
 
 if 'model' not in st.session_state:
-    st.session_state.model = 'Spotify model'
+    st.session_state.model2 = 'Spotify model'
 def update_radio2():
     st.session_state.model=st.session_state.radio2
 if 'genre' not in st.session_state:
