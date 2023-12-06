@@ -36,6 +36,10 @@ if 'artist' not in st.session_state:
     st.session_state.artist=5
 def update_same_art():
     st.session_state.artist=st.session_state.same_art
+if 'model2' not in st.session_state:
+    st.session_state.model2= 'Spotify model'
+def update_radio1():
+    st.session_state.model2 =st.session_state.radio1
 
 if 'Region' not in st.session_state:
     st.session_state.rg="US"
