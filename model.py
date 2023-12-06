@@ -9,7 +9,6 @@ from sklearn.preprocessing import MinMaxScaler
 import pickle
 import streamlit as st
 import os
-from Data import *
 
 def playlist_model(url, model, max_gen=3, same_art=5):
     log = []
