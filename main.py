@@ -25,7 +25,7 @@ sp = spotipy.client.Spotify(auth_manager=auth_manager)
 
 
 if 'model' not in st.session_state:
-    st.session_state.model = 'Model 1'
+    st.session_state.model = 'Spotify model'
 def update_radio2():
     st.session_state.model=st.session_state.radio2
 if 'genre' not in st.session_state:
@@ -434,8 +434,7 @@ def result_page():
 def About_page():
     st.header('Development')
     """
-    Made by Tator19 
-    Massive thanks to RedValis for being the very base of this project
+    Made by Amphibient S.A. of C.V. with special thanks to Red for being the very base of this project.
     """
     st.subheader('Spotify Million Playlist Dataset')
     """
@@ -453,8 +452,8 @@ def About_page():
     - Contains no more than 300 tracks
     - Contains at least 3 unique artists
     - Contains at least 2 unique albums
-    - Has no local tracks (local tracks are non-Spotify tracks that a user has on their local device
-    - Has at least one follower (not including the creator
+    - Has no local tracks (local tracks are non-Spotify tracks that a user has on their local device)
+    - Has at least one follower (not including the creator)
     - Was created after January 1, 2010 and before December 1, 2020
     - Does not have an offensive title
     - Does not have an adult-oriented title if the playlist was created by a user under 18 years of age
