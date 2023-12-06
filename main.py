@@ -88,11 +88,9 @@ def play_recomm():
     if len(st.session_state.rs)>=1:
         if st.session_state.model == 'Model 1' or st.session_state.model == 'Model 2':
             st.success('Go to the Result page to view the top {} recommendations, Thanks for taking the time to use this :D'.format(len(st.session_state.rs)))
-            st.success('- RedValis'.format(len(st.session_state.rs)))
 
         else:
             st.success('Go to the Result page to view the  Spotify recommendations')
-            st.success('- RedValis')
     else:
         st.error('Model failed. Check the log for more information.')   
 
@@ -105,7 +103,6 @@ def art_recomm():
         st.session_state.err=err
     if len(st.session_state.rs)>=1:
         st.success("Go to the Result page to view the Artist's top tracks, Thank you for taking the time to use this :D")
-        st.success("- RedValis")
     else:
         st.error('Model failed. Check the log for more information.')
 
@@ -119,10 +116,8 @@ def song_recomm():
     if len(st.session_state.rs)>=1:
         if st.session_state.model == 'Model 1' or st.session_state.model == 'Model 2':
             st.success('Go to the Result page to view the top {} recommendations, Thank you for taking the time to use this :D'.format(len(st.session_state.rs)))
-            st.success('- RedValis'.format(len(st.session_state.rs)))
         else:
             st.success('Go to the Result page to view the  Spotify recommendations')
-            st.success('- RedValis')
     else:
         st.error('Model failed. Check the log for more information.')
 
