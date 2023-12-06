@@ -37,7 +37,7 @@ if 'artist' not in st.session_state:
 def update_same_art():
     st.session_state.artist=st.session_state.same_art
 if 'model2' not in st.session_state:
-    st.session_state.model2= 'Spotify model'
+    st.session_state.model2= 'Model 1'
 def update_radio1():
     st.session_state.model2 =st.session_state.radio1
 
