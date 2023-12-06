@@ -25,7 +25,7 @@ sp = spotipy.client.Spotify(auth_manager=auth_manager)
 
 
 if 'model' not in st.session_state:
-    st.session_state.model = 'Spotify model'
+    st.session_state.model = 'Model 1'
 def update_radio2():
     st.session_state.model=st.session_state.radio2
 if 'genre' not in st.session_state:
@@ -36,6 +36,10 @@ if 'artist' not in st.session_state:
     st.session_state.artist=5
 def update_same_art():
     st.session_state.artist=st.session_state.same_art
+if 'model2' not in st.session_state:
+    st.session_state.model2= 'Spotify model'
+def update_radio1():
+    st.session_state.model2 =st.session_state.radio1
 
 if 'Region' not in st.session_state:
     st.session_state.rg="US"
@@ -82,9 +86,15 @@ def play_recomm():
         st.session_state.rs=res
         st.session_state.err=err
     if len(st.session_state.rs)>=1:
-        st.success('Go to the Result page to view the  Spotify recommendations')
+        if st.session_state.model == 'Model 1' or st.session_state.model == 'Model 2':
+            st.success('Go to the Result page to view the top {} recommendations, Thanks for taking the time to use this :D'.format(len(st.session_state.rs)))
+            st.success('- RedValis'.format(len(st.session_state.rs)))
+
+        else:
+            st.success('Go to the Result page to view the  Spotify recommendations')
+            st.success('- RedValis')
     else:
-        st.error('Model failed. Please try again')   
+        st.error('Model failed. Check the log for more information.')   
 
 def art_recomm():
     if 'rs' in st.session_state:
@@ -94,9 +104,10 @@ def art_recomm():
         st.session_state.rs=res
         st.session_state.err=err
     if len(st.session_state.rs)>=1:
-        st.success("Your results are ready! Go to the Result Page to see the recommendations")
+        st.success("Go to the Result page to view the Artist's top tracks, Thank you for taking the time to use this :D")
+        st.success("- RedValis")
     else:
-        st.error('Model failed, please try again')
+        st.error('Model failed. Check the log for more information.')
 
 def song_recomm():
     if 'rs' in st.session_state:
@@ -106,9 +117,14 @@ def song_recomm():
         st.session_state.rs=res
         st.session_state.err=err
     if len(st.session_state.rs)>=1:
-        st.success('Go to the Result page to view the  Spotify recommendations')
+        if st.session_state.model == 'Model 1' or st.session_state.model == 'Model 2':
+            st.success('Go to the Result page to view the top {} recommendations, Thank you for taking the time to use this :D'.format(len(st.session_state.rs)))
+            st.success('- RedValis'.format(len(st.session_state.rs)))
+        else:
+            st.success('Go to the Result page to view the  Spotify recommendations')
+            st.success('- RedValis')
     else:
-        st.error('Model failed. Please try again.')
+        st.error('Model failed. Check the log for more information.')
 
 def playlist_page():
     st.subheader("User Playlist")
@@ -136,7 +152,7 @@ def artist_page():
 def spr_sidebar():
     menu=option_menu(
         menu_title=None,
-        options=['Home','Result','About'],
+        options=['Home','Result','About','Log'],
         icons=['house','book','info-square','terminal'],
         menu_icon='cast',
         default_index=0,
@@ -148,6 +164,8 @@ def spr_sidebar():
         st.session_state.app_mode = 'Result'
     elif menu=='About':
         st.session_state.app_mode = 'About'
+    elif menu=='Log':
+        st.session_state.app_mode = 'Log'
     
 def home_page():
     st.session_state.radio=st.session_state.feature
@@ -157,12 +175,18 @@ def home_page():
     st.session_state.Region=st.session_state.rg
 
     
-    st.title('Croak Recommendation System')
-    col,col2=st.columns([2,3])
+    st.title('Helical Recommendation System')
+    col,col2,col3=st.columns([2,2,3])
     radio=col.radio("Feature",options=("Playlist","Song","Artist Top Tracks"),key='radio',on_change=update_radio0)
     if radio =="Artist Top Tracks":
-        Region=col2.selectbox("Please Choose Region",index=58,key='Region',on_change=update_Region,options=('AD', 'AR', 'AU', 'AT', 'BE', 'BO', 'BR', 'BG', 'CA', 'CL', 'CO', 'CR', 'CY', 'CZ', 'DK', 'DO', 'EC', 'SV', 'EE', 'FI', 'FR', 'DE', 'GR', 'GT', 'HN', 'HK', 'HU', 'IS', 'ID', 'IE', 'IT', 'JP', 'LV', 'LI', 'LT', 'LU', 'MY', 'MT', 'MX', 'MC', 'NL', 'NZ', 'NI', 'NO', 'PA', 'PY', 'PE', 'PH', 'PL', 'PT', 'SG', 'ES', 'SK', 'SE', 'CH', 'TW', 'TR', 'GB', 'US', 'UY'))
-           
+        radio1=col2.radio("Model",options=["Spotify model"],key='radio1',on_change=update_radio1)
+        Region=col3.selectbox("Please Choose Region",index=58,key='Region',on_change=update_Region,options=('AD', 'AR', 'AU', 'AT', 'BE', 'BO', 'BR', 'BG', 'CA', 'CL', 'CO', 'CR', 'CY', 'CZ', 'DK', 'DO', 'EC', 'SV', 'EE', 'FI', 'FR', 'DE', 'GR', 'GT', 'HN', 'HK', 'HU', 'IS', 'ID', 'IE', 'IT', 'JP', 'LV', 'LI', 'LT', 'LU', 'MY', 'MT', 'MX', 'MC', 'NL', 'NZ', 'NI', 'NO', 'PA', 'PY', 'PE', 'PH', 'PL', 'PT', 'SG', 'ES', 'SK', 'SE', 'CH', 'TW', 'TR', 'GB', 'US', 'UY'))
+    elif radio =="Playlist" or radio =="Song" :
+        radio2=col2.radio("Model",options=("Model 1","Model 2","Spotify Model"),key='radio2',on_change=update_radio2)
+        if st.session_state.radio2=="Model 1" or st.session_state.radio2=="Model 2":
+            num_genre=col3.selectbox("choose a number of genres to focus on",options=(1,2,3,4,5,6,7),index=2,key='num_genre',on_change=update_num_genre)
+            same_art=col3.selectbox("How many recommendations by the same artist",options=(1,2,3,4,5,7,10,15),index=3,key='same_art',on_change=update_same_art)
+
 
     st.markdown("<br>", unsafe_allow_html=True)
     
@@ -414,6 +438,13 @@ def result_page():
          i+=1
          if i%5==0:
             time.sleep(1)
+def Log_page():
+    log=st.checkbox('Display Output', True, key='display_output')
+    if log == True:
+     if 'err' in st.session_state:
+        st.write(st.session_state.err)
+    with open('Data/streamlit.csv') as f:
+        st.download_button('Download Dataset', f,file_name='streamlit.csv')
 def About_page():
     st.header('Development')
     """
@@ -464,7 +495,7 @@ def About_page():
     
     Information about features: [here](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-audio-features)
     """
-    
+
 def main():
     spr_sidebar()        
     if st.session_state.app_mode == 'Home':
@@ -473,6 +504,8 @@ def main():
         result_page()
     if st.session_state.app_mode == 'About' :
         About_page()
+    if st.session_state.app_mode == 'Log':
+        Log_page()
 # Run main()
 #if __name__ == '__main__': this doesnt allow reletive imports >:()
 main()
