@@ -178,8 +178,8 @@ def home_page():
     st.title('Croak Recommendation System')
     col,col2,col3=st.columns([2,2,3])
     radio=col.radio("Feature",options=("Playlist","Song","Artist Top Tracks"),key='radio',on_change=update_radio0)
-   if radio =="Artist Top Tracks":
-        radio1=col2.radio("Model",options=["Spotify model"],key='radio1',on_change=update_radio1)
+   if radio =="Artist Top Tracks" :
+       radio1=col2.radio("Model",options=["Spotify model"],key='radio1',on_change=update_radio1)
         Region=col3.selectbox("Please Choose Region",index=58,key='Region',on_change=update_Region,options=('AD', 'AR', 'AU', 'AT', 'BE', 'BO', 'BR', 'BG', 'CA', 'CL', 'CO', 'CR', 'CY', 'CZ', 'DK', 'DO', 'EC', 'SV', 'EE', 'FI', 'FR', 'DE', 'GR', 'GT', 'HN', 'HK', 'HU', 'IS', 'ID', 'IE', 'IT', 'JP', 'LV', 'LI', 'LT', 'LU', 'MY', 'MT', 'MX', 'MC', 'NL', 'NZ', 'NI', 'NO', 'PA', 'PY', 'PE', 'PH', 'PL', 'PT', 'SG', 'ES', 'SK', 'SE', 'CH', 'TW', 'TR', 'GB', 'US', 'UY'))
     elif radio =="Playlist" or radio =="Song" :
         radio2=col2.radio("Model",options=("Spotify Model"),key='radio2',on_change=update_radio2)
